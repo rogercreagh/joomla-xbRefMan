@@ -1,5 +1,7 @@
 # joomla-xbRefMan
  **xbRefMan** provides back-end management and front-end views for References created by **xbRefs** in Joomla articles.
+ 
+ NB This project is only for **Joomla 3.10**. I have no plans to develop aJoomla 4 version - if you wish to have a version for Joomla 4 then you are welcome to use whatever code you can from this project and doo it yourself so long as you do not release it as a commercial/paid-for Joomla extension.
 
  Current release is v1.0.0 Download either as a Joomla installation [package](https://crosborne.uk/downloads/file/23) together with the two plugins, of as just the [component](https://crosborne.uk/downloads/file/22) from the [CrOsborne website](https://crosborne.uk/downloads/). 
  
