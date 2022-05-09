@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xbRefMan admin/models/forms/textrefs.xml v0.6.3 10th March 2022 -->
+<form>
+	<fieldset>
+		<field name="parent_tag" type="tag"
+			label="Parent Tag for Conversions" description="Choose the parent tag for text references conversion to tags"
+			multiple="false" mode="nested"
+		>
+  			<option value="1">JNONE</option>
+		</field>
+	</fieldset>
+</form>

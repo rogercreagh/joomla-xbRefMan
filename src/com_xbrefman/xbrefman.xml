@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.1" method="upgrade">
+	<name>xbRefMan</name>
+	<creationDate>9th May 2022</creationDate>
+	<version>1.0.0</version>
+	<author>Roger C-O</author>
+	<authorEmail>roger@crosborne.uk</authorEmail>
+	<authorUrl>www.crosborne.uk</authorUrl>
+	<copyright>(c) Roger Creagh-Osborne, 2022. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<description>COM_XBREFMAN_XML_DESCRIPTION</description>
+
+	<scriptfile>script.xbrefman.php</scriptfile>
+
+	<files folder="site">
+	    <filename>index.html</filename>
+	    <filename>xbrefman.php</filename>
+	    <filename>controller.php</filename>
+	    <filename>router.php</filename>
+	    <folder>controllers</folder>
+	    <folder>helpers</folder>
+	    <folder>layouts</folder>
+	    <folder>models</folder>
+	    <folder>views</folder>
+	</files>
+ 
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB/en-GB.com_xbrefman.ini</language>
+	</languages>
+
+	<media destination="com_xbrefman" folder="media">
+		<filename>index.html</filename>
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>
+
+	<administration>
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>xbrefman.php</filename>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+<!-- 			<folder>sql</folder>  -->
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB/en-GB.com_xbrefman.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_xbrefman.sys.ini</language>
+		</languages>
+
+		<menu img="class:xbrefman"
+			link="option=com_xbrefman&amp;view=dashboard">xbRefMan</menu>
+		<submenu>
+			<menu link="option=com_xbrefman"
+				img="class:xbrefman-dashboard" >
+					xbrefman_iconmenu_dashboard
+			</menu>
+			<menu link="option=com_xbrefman&amp;view=articles"
+				img="class:xbrefman-articles" >
+					xbrefman_iconmenu_articles
+			</menu>
+			<menu link="option=com_xbrefman&amp;view=tagrefs"
+				img="class:xbrefman-tagrefs" >
+					xbrefman_iconmenu_tagrefs
+			</menu>
+			<menu link="option=com_xbrefman&amp;view=linkrefs"
+				img="class:xbrefman-linkrefs" >
+					xbrefman_iconmenu_linkrefs
+			</menu>
+			<menu link="option=com_xbrefman&amp;view=textrefs"
+				img="class:xbrefman-textrefs" >
+					xbrefman_iconmenu_textrefs
+			</menu>
+		</submenu>
+	</administration>
+
+	<updateservers>
+		<server type="extension" priority="1" name="xbMaps Updates">
+			http://www.crosborne.co.uk/jupdates/update_xbrefman.xml
+		</server>
+	 </updateservers>
+</extension>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xbRefman reference view default.xml v0.9.1 11th April 2022 -->
+<metadata>
+	<layout title="Reference Articles">
+		<message>Display a list of articles for a specific reference</message>
+	</layout>
+	<fields name="request">
+		<fieldset
+			name="request"
+			addfieldpath="administrator/components/com_xbrefman/models/fields"
+		>
+	 		<field name="type" type="radio"
+				label="Reference Type"
+				description="Select type of reference"
+				class="btn-group btn-group-yesno"
+				>
+					<option value="tag" >Tag</option>
+					<option value="weblink">Weblink</option>
+					<option value="text">Text</option>
+			</field>	
+			<field name="tid" type="tag"
+				label="COM_TAGS_FIELD_TAG_LABEL"
+				description="COM_TAGS_FIELD_SELECT_TAG_DESC"
+				mode="nested"
+				required="false"
+				multiple="false"
+				showon="type:tag"
+			/>
+			<field name="wid" type="modal_weblink"
+				description="COM_WEBLINKS_FIELD_SELECT_WEBLINK_DESC"
+				label="COM_WEBLINKS_FIELD_SELECT_WEBLINK_LABEL"
+				required="false"
+				select="true"
+				new="false"
+				edit="false"
+				clear="true"
+				showon="type:weblink"
+			/>
+			<field name="xid" type="text" class="inputbox" size="40" 
+				label="Title" description="XBREFMAN_ENTER_REF_TITLE"
+				default=""  
+				showon="type:text"
+			/>
+			<!-- 
+			<field name="artid" type="modal_article"
+				label="COM_CONTENT_FIELD_SELECT_ARTICLE_LABEL"
+				description="COM_CONTENT_FIELD_SELECT_ARTICLE_DESC"
+				required="false"
+				select="true"
+				new="false"
+				edit="false"
+				clear="true"
+				showon="type:text"
+			/>
+			 -->
+			
+		</fieldset>
+	</fields>
+<!-- Additional page display options (added above the standard Page Display options) -->
+<!-- 
+	<fields name="params" addfieldpath="administrator/components/com_xbrefman/models/fields">
+		<fieldset name="page-options" label="Page Headings">
+			<field name="page_info_note" type="note"
+				label="XBREFMAN_PAGE_NOTE_LABEL" description="XBREFMAN_PAGE_NOTE_DESC"
+			/>
+			<field name="list_title" type="text" class="inputbox w400" size="40" 
+				label="XBREFMAN_PAGETITLE_LABEL" description="XBREFMAN_PAGETITLE_DESC"
+				default=""  
+			/>
+			<field name="list_subtitle" type="text" class="inputbox w400" size="160" 
+				label="XBREFMAN_PAGESUBTITLE_LABEL" description="XBREFMAN_PAGESUBTITLE_DESC"
+				default=""
+              	showon="list_title!:"
+			/>
+			<field name="list_headtext" type="textarea" 
+				label="XBREFMAN_PAGEHEADER_LABEL" description="XBREFMAN_PAGEHEADER_DESC"
+				rows="6" cols="40"
+				default=""
+				filter="safehtml"
+              />       
+		</fieldset>
+	</fields>
+ -->
+
+</metadata>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.8" method="upgrade">
+	<name>xbRefMan Package</name>
+	<packagename>xbrefman</packagename>
+	<version>0.9.5</version>
+	<creationDate>2nd May 2022</creationDate>
+	<author>Roger C-O</author>
+	<copyright>Copyright (c) Roger Creagh-Osborne, 2022. All rights reserved.</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<authorEmail>roger@crosborne.co.uk</authorEmail>
+	<authorUrl>www.crosborne.co.uk</authorUrl>
+	<com_version>0.9.5</com_version>
+	<con_version>2.1.1</con_version>
+	<btn_version>2.1.1</btn_version>
+	<url>https://www.crosborne.co.uk/xbrefman</url>
+	<packager>Roger C-O</packager>
+	<packagerurl>https://www.crosborne.co.uk/xbrefman</packagerurl>
+	<description>Package containing xbRefMan Component and xbRefs-Button and xbRefs-Content plugins to create and manage references in article using a shortcode for display as popover and/or footnote.</description>
+	<blockChildUninstall>true</blockChildUninstall>
+	<updateservers>
+	    <server type="extension" priority="1" name="xbRefsPlugins Package">
+	    	https://crosborne.co.uk/jupdates/update_pkg_xbrefman.xml
+	    </server>
+	</updateservers>
+	
+	<scriptfile>pkg_xbrefman_script.php</scriptfile>
+	 
+	<files folder="packages">
+		<file type="component" id="com_xbrefman">com_xbrefman_v0.9.5.zip</file>
+		<file type="plugin" id="xbrefscon" group="content">plg_content_xbrefs_v2.1.1.zip</file>
+		<file type="plugin" id="xbrefsbtn" group="editors-xtd">plg_button_xbrefs_v2.1.1.zip</file>
+	</files>
+</extension>

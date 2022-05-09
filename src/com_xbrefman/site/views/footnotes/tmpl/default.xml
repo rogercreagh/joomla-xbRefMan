@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xbRefman footnotes view default.xml v0.7.7 1st April 2022 -->
+<metadata>
+	<layout title="Footnotes List">
+		<message>Display a list of footnotes in articles</message>
+	</layout>
+	<fields name="params" addfieldpath="administrator/components/com_xbrefman/models/fields">
+<!-- Basic options. -->
+		<fieldset name="basic" label="Layout">
+			<field name="show_cats" type="radio"
+				label="XBREFMAN_SHOW_CATS_LABEL"
+				description="XBREFMAN_SHOW_CAT_TAG_DESC"
+				class="btn-group btn-group-yesno"
+  				useglobal="true"
+				>
+					<option value="0" >JNO</option>
+					<option value="1">JSHOW</option>
+			</field>	
+	 		<field name="show_tags" type="radio"
+				label="XBREFMAN_SHOW_TAGS_LABEL"
+				description="XBREFMAN_SHOW_CAT_TAG_DESC"
+				class="btn-group btn-group-yesno"
+  				useglobal="true"
+				>
+					<option value="0" >JNO</option>
+					<option value="1">JSHOW</option>
+			</field>	
+		</fieldset>
+			    
+<!-- Search and Filter options. -->
+		<fieldset name="filters" label="Filters">
+	 		<field name="search_bar" type="radio"
+				label="XBREFMAN_SHOW_SEARCH_LBL"
+				description="XBREFMAN_SHOW_SEARCH_DESC"
+				class="btn-group btn-group-yesno btn-small"
+				useglobal="true"
+			>
+				<option value="0" >JNO</option>
+				<option value="1">JYES</option>
+			</field>	
+
+			<field
+				name="menu_artcat_id" type="category"
+				label="XBREFMAN_MENU_ARTCAT_LABEL"
+				description="XBREFMAN_MENU_ARTCAT_DESC"
+				extension="com_content"
+				itemtype="article"
+				published="1"
+				>
+					<option value="0">XBREFMAN_MENU_ARTCAT_SELECT</option>
+			</field>
+			<field
+				name="menu_arttag" type="tag"
+				label="XBREFMAN_MENU_ARTTAG_LABEL"
+				description="XBREFMAN_MENU_ARTTAG_DESC"
+				multiple="true"
+				mode="nested"
+			/>
+		</fieldset>
+		
+<!-- Additional page display options (added above the standard Page Display options) -->
+		<fieldset name="page-options" label="Page Headings">
+			<field name="page_info_note" type="note"
+				label="XBREFMAN_PAGE_NOTE_LABEL" description="XBREFMAN_PAGE_NOTE_DESC"
+			/>
+			<field name="list_title" type="text" class="inputbox w400" size="40" 
+				label="XBREFMAN_PAGETITLE_LABEL" description="XBREFMAN_PAGETITLE_DESC"
+				default=""  
+			/>
+			<field name="list_subtitle" type="text" class="inputbox w400" size="160" 
+				label="XBREFMAN_PAGESUBTITLE_LABEL" description="XBREFMAN_PAGESUBTITLE_DESC"
+				default=""
+              	showon="list_title!:"
+			/>
+			<field name="list_headtext" type="textarea" 
+				label="XBREFMAN_PAGEHEADER_LABEL" description="XBREFMAN_PAGEHEADER_DESC"
+				rows="6" cols="40"
+				default=""
+				filter="safehtml"
+              />       
+		</fieldset>
+	</fields>
+
+</metadata>

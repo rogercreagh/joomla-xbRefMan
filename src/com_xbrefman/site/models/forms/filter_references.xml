@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- xbRefman site/models/forms/filter_references.xml v0.8.4 11th April 2022 -->
+<form>
+    <fields name="filter" addfieldpath="administrator/components/com_xbrefman/models/fields">
+        <field name="search" type="text"
+            label="COM_CONTENT_FILTER_SEARCH_DESC"
+			description="XBREFMAN_SEARCH_REF_DESC"
+            hint="XBREFMAN_SEARCH_HINT"
+        /> 
+    </fields>
+
+</form>
