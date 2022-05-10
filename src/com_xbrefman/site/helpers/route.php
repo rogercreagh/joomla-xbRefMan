@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefman Component
- * @version 0.7.4 22nd March 2022
+ * @version 1.0.0.0 10th May 2022
  * @filesource site/helpers/route.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -147,15 +147,15 @@ class XbrefmanHelperRoute
 	    // better check if sef turned on
 	    if (Factory::getApplication()->get('sef')>0){
 	       //get the com_content integration settings
-	        $component = ComponentHelper::getComponent('com_content');
-	        $artitems     = Factory::getApplication()->getMenu()->getItems('component_id', $component->id);
+	        $comcontent = ComponentHelper::getComponent('com_content');
+	        $artitems     = Factory::getApplication()->getMenu()->getItems('component_id', $comcontent->id);
 	        if (!$artitems) {
 	            return 'index.php?option=com_content&view=article&id='.$id;
 	        }
 	        // if there is a menu entry for the specific article we will use it as the url
 	        foreach ($artitems as $item) {
 	            if(($item->query['view']=='article') && ($item->query['id']==$id)) {
-	                return 'index.php/'.$item->alias;
+	                return 'index.php/'.$item->route;
 	            }
 	        }
 	        // no direct menu entry for the article s we will use the fallback format
@@ -172,15 +172,36 @@ class XbrefmanHelperRoute
 	    //no sef, use basic format
 	    return 'index.php?option=com_content&view=article&id='.$id;
 	}
+
+	public static function getArticleCategoryRoute($id) {
+	    // better check if sef turned on
+	    if (Factory::getApplication()->get('sef')>0){
+	        //get the com_content integration settings
+	        $comcontent = ComponentHelper::getComponent('com_content');
+	        $artitems     = Factory::getApplication()->getMenu()->getItems('component_id', $comcontent->id);
+	        if (!$artitems) {
+	            return 'index.php?option=com_content&view=category&id='.$id;
+	        }
+	        // if there is a menu entry for the specific article we will use it as the url
+	        foreach ($artitems as $item) {
+	            if(($item->query['view']=='category') && ($item->query['id']==$id)) {
+	                return 'index.php/'.$item->route;
+	            }
+	        }
+	    }
+	    //no sef or no menu item, use basic format
+	    return 'index.php?option=com_content&view=category&id='.$id;
+	}
+	
 }
 
 	        
-//	        $sef_modern = $component->params->get('sef_advanced'); //confusing naming - the options call it modern but the param calls it advanced
-//	        $sef_noids = $component->params->get('sef_ids'); //confusing name/values - the options call it sef_ids but the value 1 (true) means no ids (or do strip ids)
+	        //$sef_modern = $comcontent->params->get('sef_advanced'); //confusing naming - the options call it modern but the param calls it advanced
+	        //$sef_noids = $comcontent->params->get('sef_ids'); //confusing name/values - the options call it sef_ids but the value 1 (true) means no ids (or do strip ids)
 	        // If no menu items found, return non sef link
 	        //first choice is a menu entry for this article
 	        // second choice is the default item ...
-	        // now it gets confusing as with modern on and noids on it expects /menualias/artealias
+	        // now it gets confusing as with modern on and noids on it expects /menualias/artalias
 	        // but with modern on and ids on it expects /menualias/artid-artalias
 	        // although menualias/artid will also work
 	        // and with modern off it expects /menualais/artid:artalias or again /menualias/artid will work
@@ -200,7 +221,7 @@ class XbrefmanHelperRoute
 /***
 article routing
 1. sef off - must be full url
-2 sef on legacy - /[any com_content menu alias/artid OR /[any com_content menu alias]/artidanytext (id takes the int off the front
+2 sef on legacy - /[any com_content menu alias]/artid OR /[any com_content menu alias]/artid-anytext (id takes the int off the front
 3 sef on modern with ids - same as legacy 
 4 sef on modern no ids - /[any-com_content menu alias]/artalias
 5 sef on legacy (no ids)

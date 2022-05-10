@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefMan Component
- * @version 0.9.2.1 23rd April 2022
+ * @version 1.0.0 10th May 2022
  * @filesource site/views/footnotes/tmpl/default.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -30,6 +30,9 @@ if (!$listOrder) {
 require_once JPATH_COMPONENT.'/helpers/route.php';
 
 $reflink = 'index.php?option=com_xbrefman&view=reference';
+//$alink = 'index.php?option=com_content&view=article&id=';
+$clink = 'index.php?option=com_content&view=category&tmpl=default&id=';
+
 ?>
 
 <div class="xbrefman">
@@ -95,7 +98,9 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
     			<?php foreach ($this->items as $i => $item) : 
     			?>
     			<?php if (count($item->footnotes)>0) : ?>
-    				<?php $alink = XbrefmanHelperRoute::getArticleRoute($item->id); ?>
+    				<?php $alink = XbrefmanHelperRoute::getArticleRoute($item->id); 
+    				    $clink = XbrefmanHelperRoute::getArticleCategoryRoute($item->catid);
+    				?>
     				<tr>
     					<td>
     						<a href="<?php echo $alink; ?>"
@@ -110,8 +115,8 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
     				<?php if($this->show_cats || $this->show_tags) : ?>
      						<?php if($this->show_cats) : ?>	
      							<p>
-     							<?php if($this->show_cats==2) : ?>											
-    								<a class="label label-success" href="<?php echo $clink.$item->catid; ?>"><?php echo $item->category_title; ?></a>
+     							<?php if($this->show_cats>0) : ?>											
+    								<a class="label label-success" href="<?php echo $clink; ?>"><?php echo $item->category_title; ?></a>
     							<?php else: ?>
     								<span class="label label-success"><?php echo $item->category_title; ?></span>
     							<?php endif; ?>
@@ -138,10 +143,12 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
                     						<?php echo '<a href="'.$alink.'#ref'.$ref['num'].'">['.$ref['num'].'] </a>'; ?> 
                     					</td>
                     					<td class="xbfoot" style="padding-left:10px;">
-    										<a href="<?php echo Route::_($reflink.'&key='.$ref['refkey']); ?>"
-    											title="<?php echo Text::_('XBREFMAN_LINK_REF'); ?>" >
+                    						<?php if ($ref['type'] != 'text') : ?>
+    											<a href="<?php echo Route::_($reflink.'&key='.$ref['refkey']); ?>"
+    												title="<?php echo Text::_('XBREFMAN_LINK_REF'); ?>" >
+    										<?php endif; ?>
                         						<b><?php echo str_replace(' ','&nbsp;',$ref['title']); ?></b>
-                         					</a>                            					                 					
+                         					<?php if ($ref['type'] != 'text') : ?></a><?php endif; ?>                            					                 					
                     					</td>
                     					<td class="xbfoot"><?php echo $ref['desc']; ?></td>
                     					<td style="width:33%;">

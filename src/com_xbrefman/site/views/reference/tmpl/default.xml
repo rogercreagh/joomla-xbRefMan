@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- xbRefman reference view default.xml v0.9.1 11th April 2022 -->
+<!-- xbRefman reference view default.xml v1.0.0 10th May 2022 -->
 <metadata>
 	<layout title="Reference Articles">
 		<message>Display a list of articles for a specific reference</message>
@@ -11,12 +11,13 @@
 		>
 	 		<field name="type" type="radio"
 				label="Reference Type"
-				description="Select type of reference"
+				description="Select type of reference to display. You will then need to select a specific taag/weblink/text title to generate the list for articles"
 				class="btn-group btn-group-yesno"
+				required="true"
 				>
 					<option value="tag" >Tag</option>
 					<option value="weblink">Weblink</option>
-					<option value="text">Text</option>
+<!-- 					<option value="text">Text</option> -->
 			</field>	
 			<field name="tid" type="tag"
 				label="COM_TAGS_FIELD_TAG_LABEL"
@@ -36,11 +37,13 @@
 				clear="true"
 				showon="type:weblink"
 			/>
+			<!-- 			
 			<field name="xid" type="text" class="inputbox" size="40" 
 				label="Title" description="XBREFMAN_ENTER_REF_TITLE"
 				default=""  
 				showon="type:text"
 			/>
+			 -->
 			<!-- 
 			<field name="artid" type="modal_article"
 				label="COM_CONTENT_FIELD_SELECT_ARTICLE_LABEL"

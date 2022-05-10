@@ -97,7 +97,9 @@ $labeltype = array('tag'=>'label-info','weblink'=>'label-cyan', 'text'=>'label-m
         		</thead>
         		<tbody>
     			<?php foreach ($this->item->articles as $i => $article) : ?>
-    			<?php $alink = XbrefmanHelperRoute::getArticleRoute($article->id); ?>
+    			<?php $alink = XbrefmanHelperRoute::getArticleRoute($article->id); 
+    			 $clink = XbrefmanHelperRoute::getArticleCategoryRoute($article->catid);
+    			?>
     				<tr>
     					<td>
     						<a href="<?php echo $alink; ?>"
@@ -131,7 +133,11 @@ $labeltype = array('tag'=>'label-info','weblink'=>'label-cyan', 'text'=>'label-m
     					<td class="hidden-phone">
      						<?php if($this->show_cats) : ?>	
      							<p>
+      							<?php if($this->show_cats>0) : ?>											
+    								<a class="label label-success" href="<?php echo $clink; ?>"><?php echo $article->category_title; ?></a>
+    							<?php else: ?>
     								<span class="label label-success"><?php echo $article->category_title; ?></span>
+    							<?php endif; ?>
     							</p>
     						<?php endif; ?>
     						<?php if($this->show_tags) {

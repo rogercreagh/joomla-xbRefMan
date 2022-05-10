@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefMan Component
- * @version 0.9.2.1 23rd April 2022
+ * @version 1.0.0 10th May 2022
  * @filesource site/views/references/tmpl/default.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -30,6 +30,8 @@ if (!$listOrder) {
 require_once JPATH_COMPONENT.'/helpers/route.php';
 
 $reflink = 'index.php?option=com_xbrefman&view=reference';
+$alink = 'index.php?option=com_content&view=article&id=';
+$clink = 'index.php?option=com_content&view=category&id=';
 ?>
 
 <div class="xbrefman">
@@ -83,9 +85,12 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
     			?>
     				<tr style="background-color:#f9f9f9;">
     					<td>
-    						<a href="<?php echo $reflink.'&key='.$ref['refkey']; ?>"
+    						<?php if ($ref['reftype'] != 'text') : ?>
+    							<a href="<?php echo $reflink.'&key='.$ref['refkey']; ?>"
     								title="<?php echo Text::_('XBREFMAN_LINK_REF'); ?>" >
-    							<b><?php echo $this->escape($ref['title']); ?></b></a>    								
+    						<?php endif; ?>
+    						<b><?php echo $this->escape($ref['title']); ?></b>
+    						<?php if ($ref['reftype'] != 'text') : ?></a><?php endif; ?>    								
     					</td>
     					<td>
     						<?php echo $ref['desc']; ?>
@@ -100,18 +105,17 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
     							<tbody>
     								<?php $lastart = 0; ?>
     								<?php foreach($ref['articles'] as $i=>$art ) : ?>
-    								<?php $alink = XbrefmanHelperRoute::getArticleRoute($art['artid']); ?>
     									<?php if ($art['artid'] != $lastart ) : ?>
     									<tr>
     									<td></td>
-    										<td><a href="<?php echo $alink; ?>"> 
+    										<td><a href="<?php echo $alink.$art['artid']; ?>"> 
     											<?php echo $art['arttitle']; ?>
     											</a><br /><i><?php echo count($art['artrefinfos']).' '.Text::_('XBREFMAN_INSTANCES'); ?></i>
     										</td>
     										<td>
     											<?php foreach ($art['artrefinfos'] as $refinfo): ?>
         											
-											<?php echo '<i><a href="'.$alink.'#refid'.$refinfo['idx'].'">'.Text::_('XBREFMAN_NEAR_WORD').' '.$refinfo['pos'].'</a></i><br /> ';
+											<?php echo '<i><a href="'.$alink.$art['artid'].'#refid'.$refinfo['idx'].'">'.Text::_('XBREFMAN_NEAR_WORD').' '.$refinfo['pos'].'</a></i><br /> ';
         											echo $refinfo['context'].' ';
         											if ($refinfo['text']){
         											    echo XbrefmanGeneral::makePopover(array('disp'=>$refinfo['disp'],'trig'=>$refinfo['trig'],
@@ -119,7 +123,7 @@ $reflink = 'index.php?option=com_xbrefman&view=reference';
         											    echo '<b>'.$refinfo['text'].'</b></span> ';
         											}
         											if ($refinfo['disp'] != 'pop') {
-        											    echo '<a href="'.$alink.'#ref'.$refinfo['num'].'">['.$refinfo['num'].']</a>';
+        											    echo '<a href="'.$alink.$art['artid'].'#ref'.$refinfo['num'].'">['.$refinfo['num'].']</a>';
         											}
         											?>
         											<br />
