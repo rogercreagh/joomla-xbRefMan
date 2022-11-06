@@ -309,7 +309,7 @@ class XbrefmanHelper extends ContentHelper {
 	    $query = $db->getQuery(true);
 	    $query->select("CONCAT(a.introtext,' ', a.fulltext) as content");
         $query->from($db->quoteName('#__content').' as a');
-        $query->where('a.id = '.$artid);
+        $query->where('a.id = '.$db->quote($artid));
 	    $db->setQuery($query);
 	    $art = $db->loadObject();
 	    if (!is_null($art)) {

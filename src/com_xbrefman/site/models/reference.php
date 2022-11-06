@@ -1,7 +1,7 @@
 <?php 
 /*******
  * @package xbRefMan Component
- * @version 0.8.2 8th April 2022
+ * @version 1.0.1 4th November 2022
  * @filesource site/models/reference.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -100,7 +100,7 @@ class XbrefmanModelReference extends JModelItem {
         $query->select($db->quoteName(array('a.id','a.parent_id','a.path','a.title','a.alias','a.description','a.params')),
             array('id','parent_id','path','title','alias','description','params'));
         $query->from('#__tags AS a');
-        $query->where('a.id = '.$id);
+        $query->where('a.id = '.$db->quote($id));
         //?only get if published
         $db->setQuery($query);
         if ($item = $db->loadObject()) {
@@ -127,7 +127,7 @@ class XbrefmanModelReference extends JModelItem {
         $query->select($db->quoteName(array('a.id','a.catid','a.title','a.url','a.alias','a.description','a.params')),
             array('id','catid','title','alias','url','description','params'));
         $query->from('#__weblinks AS a');
-        $query->where('a.id = '.$id);
+        $query->where('a.id = '.$db->quote($id));
         //?only get if published
         $db->setQuery($query);
         if ($item = $db->loadObject()) {

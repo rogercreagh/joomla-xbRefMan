@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefMan Component
- * @version 0.9.4 27th April 2022
+ * @version 1.0.1 4th November 2022
  * @filesource admin/helpers/xbrefmangeneral.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2021
@@ -99,7 +99,7 @@ class XbrefmanGeneral extends ContentHelper {
         $query = $db->getQuery(true);
         $query->select($db->quoteName(array('id','title','description','alias','path','published')));
         $query->from($db->quoteName('#__tags'));
-        $query->where($db->quoteName('id') . ' = ' . $tagId );
+        $query->where($db->quoteName('id') . ' = ' . $db->quote($tagId) );
         if ($pub!==false) {
             $query->where($db->quoteName('published') .'='. $pub);
         }

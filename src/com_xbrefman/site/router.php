@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefMan Component
- * @version 0.7.7 1st April 2022
+ * @version 1.0.1 4th November 2022
  * @filesource site/router.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -35,14 +35,14 @@ class XbrefmanRouter extends JComponentRouterBase {
             $type = substr($key,0,strpos($key,'-'));
             $segments[] = $type;
             if ($type == 'tag') {
-                $qry->select('alias')->from('#__tags')->where('id = '.$kid);
+                $qry->select('alias')->from('#__tags')->where('id = '.$db->quote($kid));
                 $db->setQuery($qry);
                 $alias = $db->loadResult();
                 if ($alias) {
                     $segments[] = $alias;
                 }
             } elseif ($type == 'weblink') {
-                $qry->select('alias')->from('#__weblinks')->where('id = '.$kid);
+                $qry->select('alias')->from('#__weblinks')->where('id = '.$db->quote($kid));
                 $db->setQuery($qry);
                 $alias = $db->loadResult();
                 if ($alias) {

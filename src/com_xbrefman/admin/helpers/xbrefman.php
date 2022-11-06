@@ -1,7 +1,7 @@
 <?php
 /*******
  * @package xbRefMan Component
- * @version 0.9.3.3 25th April 2022
+ * @version 1.0.1 4th November 2022
  * @filesource admin/helpers/xbrefman.php
  * @author Roger C-O
  * @copyright Copyright (c) Roger Creagh-Osborne, 2022
@@ -115,7 +115,7 @@ class XbrefmanHelper extends ContentHelper {
         $query->update('#__content AS a');
         $query->set('a.introtext = ' . $db->quote($article->introtext));
         $query->set('a.fulltext = ' . $db->quote($article->fulltext));
-        $query->where('a.id = '.$article->id);
+        $query->where('a.id = '.$db->quote($article->id));
         try {
             $db->setQuery($query);
             $res = $db->execute();
@@ -267,7 +267,7 @@ class XbrefmanHelper extends ContentHelper {
     public static function checkId($id, $table) {
         if (self::tableExists($table)) {
             $db = Factory::getDbo();
-            $query = 'SELECT id FROM '.$table.' WHERE id = '.$id;
+            $query = 'SELECT id FROM '.$table.' WHERE id = '.$db->quote($id);
             $db->setQuery($query);
             return $db->loadResult();
         }
